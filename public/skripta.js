@@ -11,10 +11,13 @@ window.addEventListener('load', function() {
 	
 	document.querySelector("#nalozi").addEventListener("click", prizgiCakanje);
 	
+	
+	
 	//Pridobi seznam datotek
 	var pridobiSeznamDatotek = function(event) {
 		prizgiCakanje();
 		var xhttp = new XMLHttpRequest();
+
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
 				var datoteke = JSON.parse(xhttp.responseText);
@@ -42,7 +45,11 @@ window.addEventListener('load', function() {
 				ugasniCakanje();
 			}
 		};
+		xhttp.open("GET","/datoteke",true);
+		xhttp.send();
 	}
+	
+	pridobiSeznamDatotek();
 	
 	var brisi = function(event) {
 		prizgiCakanje();
